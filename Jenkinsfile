@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build application') {
+        stage('Build Application & Docker Image') {
             steps {
                 sh './scripts/build.sh'
             }

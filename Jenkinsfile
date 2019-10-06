@@ -4,6 +4,7 @@ pipeline {
         stage('Linting') {
             steps {
                 sh 'hadolint Dockerfile'
+                sh 'hadolint Dockerfile.deploy'
             }
         }
         stage('Build Application & Docker Image') {
@@ -38,12 +39,14 @@ pipeline {
             }
         }
         stage("Trigger Deployment") {
-            build(
-                    job: 'udacity-capstone-project-deploy',
-                    parameters: [string(name: 'dockerTag', value: "${$BUILD_NUMBER}")],
-                    propagate: false,
-                    wait: false
-            )
+            steps {
+                build(
+                        job: 'udacity-capstone-project-deploy',
+                        parameters: [string(name: 'dockerTag', value: "${$BUILD_NUMBER}")],
+                        propagate: false,
+                        wait: false
+                )
+            }
         }
     }
 }

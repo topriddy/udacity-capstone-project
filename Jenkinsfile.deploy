@@ -3,8 +3,8 @@ node {
 }
 pipeline {
     agent any
-    stages{
-        stage ('Deploy'){
+    stages {
+        stage('Deploy') {
             sh '''
                 kubectl apply -f app-deployment.yaml
                 kubectl apply -f app-node-pod.yaml

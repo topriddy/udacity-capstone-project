@@ -37,5 +37,13 @@ pipeline {
                 }
             }
         }
+        stage("Trigger Deployment") {
+            build(
+                    job: 'udacity-capstone-project-deploy',
+                    parameters: [string(name: 'dockerTag', value: "${$BUILD_NUMBER}")],
+                    propagate: false,
+                    wait: false
+            )
+        }
     }
 }

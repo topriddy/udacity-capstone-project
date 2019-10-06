@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages{
+        stage ('Deploy'){
+            sh '''
+                kubectl apply -f app-deployment.yaml
+                kubectl get deployments
+                kubectl get pods
+                kubectl set image deployment/app-deployment app="topriddy/udacity-capstone-app:${dockerTag}"
+            '''
+        }
+    }
+}

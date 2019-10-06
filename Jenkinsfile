@@ -41,7 +41,7 @@ pipeline {
             steps {
                 build(
                         job: 'udacity-capstone-project-deploy',
-                        parameters: [string(name: 'dockerTag', value: "${$BUILD_NUMBER}")],
+                        parameters: [string(name: 'dockerTag', value: "${BUILD_NUMBER}")],
                         propagate: false,
                         wait: false
                 )

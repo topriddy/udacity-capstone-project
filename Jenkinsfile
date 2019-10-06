@@ -25,10 +25,10 @@ pipeline {
                         usernameVariable: 'DOCKER_ID',
                         passwordVariable: 'DOCKER_PASSWORD'
                 )]) {
-                    sh """ 
+                    sh '''
                     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
                     ./scripts/upload_docker.sh 
-                """
+                    '''
                 }
             }
         }

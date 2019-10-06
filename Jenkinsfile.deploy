@@ -8,7 +8,7 @@ pipeline {
           steps{
               sh '''
                 kubectl apply -f k8s
-                kubectl set image deployment/app-deployment app="topriddy/udacity-capstone-app:${dockerTag}"
+                kubectl set image deployment/app-deployment udacity-capstone-app="topriddy/udacity-capstone-app:${dockerTag}"
                 kubectl get deployments
                 kubectl get pods
             '''

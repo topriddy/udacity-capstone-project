@@ -7,11 +7,10 @@ pipeline {
         stage('Deploy') {
           steps{
               sh '''
-                kubectl version
                 kubectl apply -f k8s
+                kubectl set image deployment/app-deployment app="topriddy/udacity-capstone-app:${dockerTag}"
                 kubectl get deployments
                 kubectl get pods
-                kubectl set image deployment/app-deployment app="topriddy/udacity-capstone-app:${dockerTag}"
             '''
           }
         }

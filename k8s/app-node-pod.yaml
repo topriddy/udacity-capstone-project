@@ -5,7 +5,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - targetPort: 8080
+  - port: 8050
+    targetPort: 8080
     nodePort: 31515
   selector:
     app: udacity-capstone-app

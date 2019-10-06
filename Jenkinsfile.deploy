@@ -7,6 +7,7 @@ pipeline {
         stage('Deploy') {
           steps{
               sh '''
+                kubectl version
                 kubectl apply -f k8s
                 kubectl get deployments
                 kubectl get pods

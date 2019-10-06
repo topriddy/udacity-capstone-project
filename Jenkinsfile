@@ -4,7 +4,6 @@ pipeline {
         stage('Linting') {
             steps {
                 sh 'hadolint Dockerfile'
-                sh 'hadolint Dockerfile.deploy'
             }
         }
         stage('Build Application & Docker Image') {

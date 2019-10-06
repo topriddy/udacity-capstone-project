@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
+        classpath("de.aaschmid:gradle-cpd-plugin:1.1")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: de.aaschmid.gradle.plugins.cpd.CpdPlugin
+
+bootJar {
+    baseName = 'capstone-project'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+checkstyle {
+    toolVersion = '8.12'
+    ignoreFailures = false
+    configFile = file("static-code-analysis/checkstyle/checkstyle.xml")
+}
+
+findbugs {
+    toolVersion = '3.0.1'
+    ignoreFailures = false
+}
+
+cpd {
+    language = 'java'
+    toolVersion = '6.0.0'
+    minimumTokenCount = 100 // approximately 5-10 lines
+}
+cpdCheck {
+    reports {
+        text.enabled = false
+        xml.enabled = true
+    }
+    ignoreAnnotations = true
+    source = sourceSets.main.allJava
+}
+
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}

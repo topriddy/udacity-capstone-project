@@ -6,11 +6,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      component: app
+      app: udacity-capstone-app
   template:
     metadata:
       labels:
-        component: app
+        app: udacity-capstone-app
     spec:
       containers:
       - name: udacity-capstone-app

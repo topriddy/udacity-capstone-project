@@ -10,3 +10,4 @@ This project includes the following
 - Gradle build script updated to do some static analysis before building app
 - Jenkins file for the pipeline
 - Docker file for building the docker image pushed to the docker hub registry.
+- Pipeline for deploying to K8s at AWS EKS 

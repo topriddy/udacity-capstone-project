@@ -7,7 +7,7 @@ pipeline {
         stage('Deploy') {
           steps{
               sh '''
-                kubectl apply -f k8s
+                kubectl apply -f k8s/app-node-pod.yaml
                 kubectl set image deployment/app-deployment udacity-capstone-app="topriddy/udacity-capstone-app:${dockerTag}"
                 kubectl get deployments
                 kubectl get pods
